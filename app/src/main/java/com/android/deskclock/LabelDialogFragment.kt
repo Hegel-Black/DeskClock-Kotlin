@@ -16,6 +16,7 @@
 
 package com.android.deskclock
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -57,6 +58,7 @@ class LabelDialogFragment : DialogFragment() {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val args = arguments ?: Bundle.EMPTY
         mAlarm = args.getParcelable(ARG_ALARM)
@@ -150,7 +152,7 @@ class LabelDialogFragment : DialogFragment() {
      * Handles completing the label edit from the IME keyboard.
      */
     private inner class ImeDoneListener : OnEditorActionListener {
-        override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
+        override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 setLabel()
                 dismissAllowingStateLoss()
